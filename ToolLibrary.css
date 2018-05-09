@@ -1,0 +1,98 @@
+/*三角形*/
+.sanjiao {
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+	border-width: 100px;
+	border-color: transparent red transparent transparent;
+	border-style: dashed solid dashed dashed;
+}
+
+/*//固定table头部*/
+/*3 PS :Thead固定 tbody滑动 （如果上下不对齐 只要上下都给上宽度就好了）*/
+/*表格thead固定*/
+.fixThead>table>thead{
+    overflow-x: auto;
+}
+.fixThead>table>tbody{
+    display: block;
+    height: 340px; /*//height高度必须设定 可以动态获取 */
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.fixThead>table>thead {
+    display:table;  /*此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。*/
+    width:99%; /*//为什么是百分之九十九呢 因为下面出滚动条的时候会占一个位置*/
+    table-layout:fixed;
+}
+.fixThead>table>thead>tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.fixThead>table>tbody>tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.fixThead>table>thead>th, .fixThead>table>tbody>tr>td{
+    text-align: left !important;
+    overflow-x:hidden;
+    overflow-x: hidden;
+    white-space:nowrap;
+}
+
+/* 会动的盒子  <div class="box-line"></div> */
+
+.box-line,
+.box-line::before,
+.box-line::after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.box-line {
+	width: 200px;
+	height: 200px;
+	margin: auto;
+	background: url("img/Button-White-Large.png") no-repeat 50%/70% rgba(0, 0, 0, 0.1);
+	color: #69ca62;
+	box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+}
+
+.box-line::before,
+.box-line::after {
+	content: '';
+	z-index: -1;
+	margin: -5%;
+	box-shadow: inset 0 0 0 2px;
+	animation: clipMe 8s linear infinite;
+}
+
+.box-line::before {
+	animation-delay: -4s;
+}
+
+.box-line:hover::after,
+.box-line:hover::before {
+	background-color: rgba(255, 0, 0, 0.3);
+}
+
+@keyframes clipMe {
+	0%,
+	100% {
+		clip: rect(0px, 220.0px, 2px, 0px);
+	}
+	25% {
+		clip: rect(0px, 2px, 220.0px, 0px);
+	}
+	50% {
+		clip: rect(218.0px, 220.0px, 220.0px, 0px);
+	}
+	75% {
+		clip: rect(0px, 220.0px, 220.0px, 218.0px);
+	}
+}
